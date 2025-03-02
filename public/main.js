@@ -1,5 +1,5 @@
 import * as THREE from './three.module.js';
-import Lenis from '@studio-freight/lenis'
+import Lenis from './node_modules/@studio-freight/lenis/dist/lenis.module.js';
 
 window.addEventListener("load", ()=>{
     const lenis = new Lenis();
