@@ -7,100 +7,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects Page</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* Your original styles, restored */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
+            box-sizing: border-box;
         }
-
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 1rem 2rem;
+        html,
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            font-family: "Inter";
+            background-color: #000;
+            color: #fff;
+        }
+        header p,
+        footer p {
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+            opacity: 0.5;
+        }
+        header p#logo {
+            opacity: 1;
+        }
+        header .logo {
+            width: 50px;
+            height: auto;
+        }
+        header nav {
+            position: fixed;
+            top: 0;
+            width: 100vw;
+            padding: 2em;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 2;
         }
-
-        header nav {
+        .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2em;
         }
-
-        header nav a {
-            text-decoration: none;
-            color: #333;
-            transition: color 0.3s ease;
+        .nav-links a {
+            color: #fff;
         }
-
-        header nav a:hover {
-            color: #007bff;
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            padding: 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
         }
-
         main {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 2rem auto;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 160px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
-
         .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 20px;
+            gap: 20px;
+            max-width: 90%;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow-y: hidden;
         }
-
+        .projects-container::-webkit-scrollbar {
+            display: none;
+        }
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+            display: inline-block;
+        }
         .project-item {
-            background-color: #fff;
+            background-color: #111;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
+            width: 300px;
+            flex-shrink: 0;
+            filter: grayscale(100%);
         }
-
         .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: scale(1.1);
+            filter: grayscale(0%);
         }
-
         .project-image-container {
             width: 100%;
             height: 200px;
             overflow: hidden;
         }
-
-        .project-image-container img {
+        .project-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
-        .project-details {
-            padding: 1.5rem;
-        }
-
         .project-details h2 {
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .project-details p {
-            color: #666;
-        }
-
-        footer {
+            margin-bottom: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
             text-align: center;
-            padding: 1rem;
-            background-color: #f0f0f0;
-            border-top: 1px solid #ddd;
+            font-size: medium;
         }
 
+        .project-item:hover .project-details h2 {
+            opacity: 1;
+            text-align: center;
+        }
         .loading-message {
             text-align: center;
-            padding: 2rem;
-            font-size: 1.2rem;
+            font-size: 18px;
         }
     </style>
 </head>
