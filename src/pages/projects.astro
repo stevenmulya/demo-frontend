@@ -78,12 +78,13 @@
 
         .projects-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax */
+            gap: 15px; /* Adjusted gap */
             padding: 20px;
-            max-width: 90%;
-            overflow-y: auto; /* Enable vertical scroll if needed */
-            max-height: 90%; /* Limit the height */
+            max-width: 95%; /* Adjusted max-width */
+            overflow-y: auto;
+            max-height: 90%;
+            grid-auto-rows: min-content; /*added this line*/
         }
 
         .project-link {
@@ -98,6 +99,7 @@
             overflow: hidden;
             transition: transform 0.3s ease;
             filter: grayscale(100%);
+            padding: 10px; /* Added padding */
         }
 
         .project-item:hover {
@@ -107,7 +109,7 @@
 
         .project-image-container {
             width: 100%;
-            height: 200px;
+            height: 150px; /* Adjusted height */
             overflow: hidden;
         }
 
@@ -166,9 +168,15 @@
 
         function renderProjects(projects) {
             const projectsContainer = document.getElementById("projects-container");
+            projectsContainer.innerHTML = ''; // Clear existing content
+
             if (projects.length > 0) {
-                projectsContainer.innerHTML = projects.map(project => `
-                    <a href="/projects/${project.id}" class="project-link">
+                projects.forEach(project => {
+                    const projectLink = document.createElement('a');
+                    projectLink.href = `/projects/${project.id}`;
+                    projectLink.className = 'project-link';
+
+                    projectLink.innerHTML = `
                         <div class="project-item">
                             <div class="project-image-container">
                                 <img src="${project.project_image}" alt="${project.project_name}" class="project-image" />
@@ -177,8 +185,10 @@
                                 <h2>${project.project_name}</h2>
                             </div>
                         </div>
-                    </a>
-                `).join('');
+                    `;
+
+                    projectsContainer.appendChild(projectLink);
+                });
             } else {
                 projectsContainer.innerHTML = "<p>No projects found.</p>";
             }
