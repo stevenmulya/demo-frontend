@@ -30,7 +30,7 @@ window.addEventListener("load", ()=>{
                     initializeScene();
                 }
             };
-            img.src =`public/img${i}.jpg`;
+            img.src =`/public/img${i}.jpg`;
         }
     }
     function initializeScene() {
