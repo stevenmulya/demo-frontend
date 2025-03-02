@@ -1,4 +1,5 @@
 ---
+
 interface Project {
   id: number;
   project_name: string;
@@ -7,9 +8,6 @@ interface Project {
   project_details: string;
   project_date: string;
 }
-
-const response = await fetch("https://demo-backend-weld-zeta.vercel.app/projects");
-const projects: Project[] = await response.json();
 ---
 
 <header>
@@ -26,28 +24,17 @@ const projects: Project[] = await response.json();
 </header>
 <main>
   <div class="projects-container">
-    {projects.length > 0 ? (
-      projects.map((project) => (
-        <a href={`/projects/${project.id}`} class="project-link">
-          <div class="project-item">
-            <div class="project-image-container">
-              <img src={project.project_image} alt={project.project_name} class="project-image" />
-            </div>
-            <div class="project-details">
-              <h2>{project.project_name}</h2>
-            </div>
-          </div>
-        </a>
-      ))
-    ) : (
-      <p class="loading-message">Loading...</p>
-    )}
+    <p class="loading-message">Loading...</p>
   </div>
 </main>
 <footer>
   <p>Portofolio #001</p>
   <p>Movie Production</p>
 </footer>
+
+<script type="module" src="/project.js">
+  fetchAndDisplayProjects();
+</script>
 
 <style>
   * {
