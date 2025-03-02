@@ -30,7 +30,7 @@ window.addEventListener("load", ()=>{
                     initializeScene();
                 }
             };
-            img.src = `https://demo-frontend-bice.vercel.app/img${i}.jpg`;
+            img.src = `/img${i}.jpg`;
         }
     }
     function initializeScene() {
