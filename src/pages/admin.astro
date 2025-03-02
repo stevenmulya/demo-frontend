@@ -1,0 +1,80 @@
+---
+import ProjectManager from "../components/ProjectManager.jsx";
+---
+
+<header>
+  <nav>
+    <div class="side-info">
+      <p id="logo">Admin Page</p>
+      <p>by Steven Mulya Tjendratama</p>
+    </div>
+    <div class="nav-links">
+      <p><a href="/projects">Projects</a></p>
+      <p><a href="/">About</a></p>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <ProjectManager client:only="react" />
+</main>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: "Inter";
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+
+  header p{
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    opacity: 0.5;
+  }
+
+  header p#logo {
+    opacity: 1;
+  }
+
+  header nav {
+    width: 100%;
+    padding: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2em;
+  }
+
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  main {
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    padding: 0 1em;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
