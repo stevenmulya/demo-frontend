@@ -1,196 +1,195 @@
----
-interface Project {
-  id: number;
-  project_name: string;
-  project_image: string;
-  project_description: string;
-  project_details: string;
-  project_date: string;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Page</title>
+    <style>
+        /* Your CSS styles here */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            font-family: "Inter";
+            background-color: #000;
+            color: #fff;
+        }
+        header p,
+        footer p {
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+            opacity: 0.5;
+        }
+        header p#logo {
+            opacity: 1;
+        }
+        header .logo {
+            width: 50px;
+            height: auto;
+        }
+        header nav {
+            position: fixed;
+            top: 0;
+            width: 100vw;
+            padding: 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2em;
+        }
+        .nav-links a {
+            color: #fff;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            padding: 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+        main {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 160px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .projects-container {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 20px;
+            gap: 20px;
+            max-width: 90%;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow-y: hidden;
+        }
+        .projects-container::-webkit-scrollbar {
+            display: none;
+        }
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+            display: inline-block;
+        }
+        .project-item {
+            background-color: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            width: 300px;
+            flex-shrink: 0;
+            filter: grayscale(100%);
+        }
+        .project-item:hover {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+        .project-image-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-details h2 {
+            margin-bottom: 10px;
+            opacity: 0; /* Initially hide the title */
+            transition: opacity 0.3s ease; /* Add transition for smooth effect */
+            text-align: center;
+            font-size: medium;
+        }
 
-const response = await fetch("https://demo-backend-weld-zeta.vercel.app/projects");
-const projects: Project[] = await response.json();
----
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  html,
-  body {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    font-family: "Inter";
-    background-color: #000;
-    color: #fff;
-  }
-  header p,
-  footer p {
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 1.5;
-    opacity: 0.5;
-  }
-  header p#logo {
-    opacity: 1;
-  }
-  header .logo {
-    width: 50px;
-    height: auto;
-  }
-  header nav {
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    padding: 2em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-  }
-  .nav-links {
-    display: flex;
-    gap: 2em;
-  }
-  .nav-links a {
-    color: #fff;
-  }
-  footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    padding: 2em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-  }
-  main {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 160px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-  .projects-container {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 20px;
-    gap: 20px;
-    max-width: 90%;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    overflow-y: hidden;
-  }
-  .projects-container::-webkit-scrollbar {
-    display: none;
-  }
-  .project-link {
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-  }
-  .project-item {
-    background-color: #111;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    width: 300px;
-    flex-shrink: 0;
-    filter: grayscale(100%);
-  }
-  .project-item:hover {
-    transform: scale(1.1);
-    filter: grayscale(0%);
-  }
-  .project-image-container {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-  }
-  .project-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .project-details h2 {
-    margin-bottom: 10px;
-    opacity: 0; /* Initially hide the title */
-    transition: opacity 0.3s ease; /* Add transition for smooth effect */
-    text-align: center;
-    font-size: medium;
-  }
+        .project-item:hover .project-details h2 {
+            opacity: 1; /* Show the title on hover */
+            text-align: center;
+        }
+        .loading-message {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="side-info">
+                <p id="logo">Projects Page</p>
+                <p>by Steven Mulya Tjendratama</p>
+            </div>
+            <div class="nav-links">
+                <p><a href="/admin">Admin</a></p>
+                <p><a href="/">About</a></p>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="projects-container" id="projects-container">
+            <p class="loading-message">Loading...</p>
+        </div>
+    </main>
+    <footer>
+        <p>Portofolio #001</p>
+        <p>Movie Production</p>
+    </footer>
 
-  .project-item:hover .project-details h2 {
-    opacity: 1; /* Show the title on hover */
-    text-align: center;
-  }
-  .loading-message {
-    text-align: center;
-    font-size: 18px;
-  }
-</style>
-<header>
-  <nav>
-    <div class="side-info">
-      <p id="logo">Projects Page</p>
-      <p>by Steven Mulya Tjendratama</p>
-    </div>
-    <div class="nav-links">
-      <p><a href="/admin">Admin</a></p>
-      <p><a href="/">About</a></p>
-    </div>
-  </nav>
-</header>
-<main>
-  <div class="projects-container" id="projects-container">
-      <p class="loading-message">Loading...</p>
-  </div>
-</main>
-<footer>
-  <p>Portofolio #001</p>
-  <p>Movie Production</p>
-</footer>
-<script defer>
-  async function fetchProjects() {
-      try {
-          const response = await fetch("https://demo-backend-weld-zeta.vercel.app/projects");
-          const projects = await response.json();
-          renderProjects(projects);
-      } catch (error) {
-          console.error("Error fetching projects:", error);
-          document.getElementById("projects-container").innerHTML = "<p>Error loading projects.</p>";
-      }
-  }
+    <script defer>
+        async function fetchProjects() {
+            try {
+                const response = await fetch("https://demo-backend-weld-zeta.vercel.app/projects");
+                const projects = await response.json();
+                renderProjects(projects);
+            } catch (error) {
+                console.error("Error fetching projects:", error);
+                document.getElementById("projects-container").innerHTML = "<p>Error loading projects.</p>";
+            }
+        }
 
-  function renderProjects(projects) {
-      const projectsContainer = document.getElementById("projects-container");
-      if (projects.length > 0) {
-          projectsContainer.innerHTML = projects.map(project => `
-              <a href="/projects/${project.id}" class="project-link">
-                  <div class="project-item">
-                      <div class="project-image-container">
-                          <img src="${project.project_image}" alt="${project.project_name}" class="project-image" />
-                      </div>
-                      <div class="project-details">
-                          <h2>${project.project_name}</h2>
-                      </div>
-                  </div>
-              </a>
-          `).join('');
-      } else {
-          projectsContainer.innerHTML = "<p>No projects found.</p>";
-      }
-  }
+        function renderProjects(projects) {
+            const projectsContainer = document.getElementById("projects-container");
+            if (projects.length > 0) {
+                projectsContainer.innerHTML = projects.map(project => `
+                    <a href="/projects/${project.id}" class="project-link">
+                        <div class="project-item">
+                            <div class="project-image-container">
+                                <img src="${project.project_image}" alt="${project.project_name}" class="project-image" />
+                            </div>
+                            <div class="project-details">
+                                <h2>${project.project_name}</h2>
+                            </div>
+                        </div>
+                    </a>
+                `).join('');
+            } else {
+                projectsContainer.innerHTML = "<p>No projects found.</p>";
+            }
+        }
 
-  fetchProjects(); // Initial fetch on page load
-  setInterval(fetchProjects, 10000); // Fetch every 10 seconds
-</script>
+        fetchProjects(); // Initial fetch on page load
+        setInterval(fetchProjects, 10000); // Fetch every 10 seconds
+    </script>
+</body>
+</html>
