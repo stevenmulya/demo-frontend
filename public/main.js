@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from './three.module.js';
 import Lenis from '@studio-freight/lenis'
 
 window.addEventListener("load", ()=>{
