@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects Page</title>
     <style>
-        /* Header and Footer styles (unchanged) */
+        /* Your existing CSS styles here */
         * {
             margin: 0;
             padding: 0;
@@ -62,8 +62,6 @@
             align-items: center;
             z-index: 2;
         }
-
-        /* Projects Container Styles (new) */
         main {
             position: absolute;
             top: 80px;
@@ -75,56 +73,60 @@
             align-items: center;
             overflow: hidden;
         }
-
         .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax */
-            gap: 15px; /* Adjusted gap */
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
             padding: 20px;
-            max-width: 95%; /* Adjusted max-width */
-            overflow-y: auto;
-            max-height: 90%;
-            grid-auto-rows: min-content; /*added this line*/
+            gap: 20px;
+            max-width: 90%;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow-y: hidden;
         }
-
+        .projects-container::-webkit-scrollbar {
+            display: none;
+        }
         .project-link {
             text-decoration: none;
             color: inherit;
-            display: block;
+            display: inline-block;
         }
-
         .project-item {
             background-color: #111;
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s ease;
+            width: 300px;
+            flex-shrink: 0;
             filter: grayscale(100%);
-            padding: 10px; /* Added padding */
         }
-
         .project-item:hover {
-            transform: scale(1.05); /* Slight zoom on hover */
+            transform: scale(1.1);
             filter: grayscale(0%);
         }
-
         .project-image-container {
             width: 100%;
-            height: 150px; /* Adjusted height */
+            height: 200px;
             overflow: hidden;
         }
-
         .project-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .project-details h2 {
-            margin: 10px;
+            margin-bottom: 10px;
+            opacity: 0; /* Initially hide the title */
+            transition: opacity 0.3s ease; /* Add transition for smooth effect */
             text-align: center;
             font-size: medium;
         }
 
+        .project-item:hover .project-details h2 {
+            opacity: 1; /* Show the title on hover */
+            text-align: center;
+        }
         .loading-message {
             text-align: center;
             font-size: 18px;
@@ -155,7 +157,7 @@
     </footer>
 
     <script defer>
-        async function fetchProjects() {
+        async function loadProjects() {
             try {
                 const response = await fetch("https://demo-backend-weld-zeta.vercel.app/projects");
                 const projects = await response.json();
@@ -168,15 +170,9 @@
 
         function renderProjects(projects) {
             const projectsContainer = document.getElementById("projects-container");
-            projectsContainer.innerHTML = ''; // Clear existing content
-
             if (projects.length > 0) {
-                projects.forEach(project => {
-                    const projectLink = document.createElement('a');
-                    projectLink.href = `/projects/${project.id}`;
-                    projectLink.className = 'project-link';
-
-                    projectLink.innerHTML = `
+                projectsContainer.innerHTML = projects.map(project => `
+                    <a href="/projects/${project.id}" class="project-link">
                         <div class="project-item">
                             <div class="project-image-container">
                                 <img src="${project.project_image}" alt="${project.project_name}" class="project-image" />
@@ -185,17 +181,13 @@
                                 <h2>${project.project_name}</h2>
                             </div>
                         </div>
-                    `;
-
-                    projectsContainer.appendChild(projectLink);
-                });
+                    </a>
+                `).join('');
             } else {
                 projectsContainer.innerHTML = "<p>No projects found.</p>";
             }
         }
-
-        fetchProjects(); // Initial fetch on page load
-        setInterval(fetchProjects, 10000); // Fetch every 10 seconds
+        loadProjects()
     </script>
 </body>
 </html>
