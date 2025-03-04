@@ -4,85 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portrait Scroll</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html, body {
-            width: 100%;
-            height: 100vh; /* Changed to 100vh for mobile-friendly height */
-            font-family: "Inter";
-            background-color: #000;
-            color: #fff;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-        header, footer {
-            width: 100%;
-            padding: 1em; /* Reduced padding for mobile */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            z-index: 2;
-        }
-        header {
-            top: 0;
-        }
-        footer {
-            bottom: 0;
-        }
-        header p, footer p {
-            font-size: 12px; /* Reduced font size for mobile */
-            font-weight: 400;
-            line-height: 1.5;
-            opacity: 0.5;
-        }
-        header p#logo {
-            opacity: 1;
-        }
-        .nav-links {
-            display: flex;
-            gap: 1em; /* Reduced gap for mobile */
-        }
-        .nav-links a {
-            color: #fff;
-            text-decoration: none; /* Remove underline from links */
-            font-size: 12px;
-        }
-        .slider-wrapper {
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: radial-gradient(circle, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-            z-index: 1;
-        }
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .nav-links {
-                gap: 0.5em; /* Further reduce gap on smaller screens */
-            }
-            header p, footer p, .nav-links a{
-                font-size: 10px;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -102,7 +23,7 @@
         <div class="slider-wrapper">
             <canvas></canvas>
         </div>
-        <div class="overlay"></div>
+        <div class="over-lay"></div>
     </main>
 
     <footer>
@@ -113,3 +34,84 @@
     <script type="module" src="/main.js"></script>
 </body>
 </html>
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+html, body { 
+width: 100%; 
+height: 1000vh;
+font-family: "Inter";
+background-color: #000;
+color: #fff; 
+}
+header p, footer p{
+font-size: 13px;
+font-weight: 400;
+line-height: 1.5;
+opacity: 0.5;
+}
+header p#logo{
+opacity: 1;
+}
+header .logo{
+width: 50px;
+height: auto;
+}
+header nav{
+position: fixed;
+top: 0;
+width: 100vw;
+padding: 2em;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 2;
+}
+.nav-links{
+display: flex;
+gap: 2em;
+}
+.nav-links a{
+    color: #fff;
+}
+footer{
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100vw;
+padding: 2em;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 2;
+}
+.slide-wrapper{
+position: fixed;
+width: 100vw;
+height: 100vh;
+overflow: hidden;
+}
+canvas{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+.overlay{
+position: fixed;
+top:0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background: #000;
+background: radial-gradient(circle,
+rgba(0,0,0,0) 75%,
+rgba(0,0,0,0.5)100%);
+z-index: 1;
+}
+</style>
